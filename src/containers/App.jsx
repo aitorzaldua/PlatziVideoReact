@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Search from '../components/Search';
@@ -5,44 +6,44 @@ import Categories from '../components/Categories';
 import Carousel from '../components/Carousel';
 import CarouselItem from '../components/CarouselItem';
 import Footer from '../components/Footer';
+import useInitialState from '../Hooks/useInitialState';
 import '../assets/styles/App.scss';
 
+const API = 'http://localhost:3000/initialState';
+
 const App = () => {
-  const [videos, setVideos] = useState({ mylist: [], trends: [], originals: [] });
 
-  useEffect(() => {
-    fetch('http://localhost:3000/initialState')
-      .then((response) => response.json())
-      .then((data) => setVideos(data));
-
-  }, []);
+  const initialState = useInitialState(API);
 
   return (
     <div className='App'>
+
       <Header />
       <Search />
 
-      {videos.mylist.length > 0 && (
-        <Categories title='Mi lista'>
+      {initialState.mylist.length > 0 && (
+        <Categories title='My Favourites'>
           <Carousel>
-            <CarouselItem />
+            {
+              initialState.trends.map((item) => <CarouselItem key={item.id} {...item} />)
+            }
           </Carousel>
         </Categories>
       )}
 
-      <Categories title='Tendencias'>
+      <Categories title='Trending Topics'>
         <Carousel>
           {
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            videos.trends.map((item) => <CarouselItem key={item.id} {...item} />)
+            initialState.trends.map((item) => <CarouselItem key={item.id} {...item} />)
           }
-
         </Carousel>
       </Categories>
 
-      <Categories title='Originales'>
+      <Categories title='Platzi Originals'>
         <Carousel>
-          <CarouselItem />
+          {
+            initialState.trends.map((item) => <CarouselItem key={item.id} {...item} />)
+          }
         </Carousel>
       </Categories>
 
