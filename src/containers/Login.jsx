@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/button-has-type */
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+
 import React from 'react';
 import '../assets/styles/components/Login.scss';
 import googleIcon from '../assets/static/google-icon.png';
