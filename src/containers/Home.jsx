@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
@@ -11,14 +12,13 @@ import '../assets/styles/App.scss';
 
 const API = 'http://localhost:3000/initialState';
 
-const App = () => {
+const Home = () => {
 
   const initialState = useInitialState(API);
 
   return (
-    <div className='App'>
+    <>
 
-      <Header />
       <Search />
 
       {initialState.mylist.length > 0 && (
@@ -47,11 +47,9 @@ const App = () => {
         </Carousel>
       </Categories>
 
-      <Footer />
-
-    </div>
+    </>
   );
 };
 
-export default App;
+export default Home;
 
